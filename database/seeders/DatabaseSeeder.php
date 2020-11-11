@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,6 +15,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        User::factory()->count(50)->create();
+        User::create([
+            'name'=> 'test ja',
+            'email' => 'test@gmail.com',
+            'password'=>bcrypt('password'),
+        ]);
+
+    
     }
 }
