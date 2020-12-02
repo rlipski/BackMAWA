@@ -38,10 +38,21 @@ class AdvertisementController extends Controller
     {
           $this->validate($request, [
             'name' => 'required|min:4',
+            'description' => 'required|min:10',
+            'phone' => 'unique:advertisement,phone,',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'location' => 'required|min:4',
+            'importance' =>'required|min:1',
         ]);
 
         $adv = Advertisement::create([
             'name' => $request->name,
+            'description' => $request->description,
+            'phone' => $request->phone,
+            'location' => $request->location,
+            'price' => $request->price,
+            'importance' => $request->importance,
+           
         ]);
 
         return response()->json(['created' => $adv], 200);
