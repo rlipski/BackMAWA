@@ -21,7 +21,7 @@ class CreateAdvertisementsTable extends Migration
             $table->string('location', 255);
             $table->string('phone', 20);
             $table->integer('importance')->nullable();; //ile dni wazne ogłoszenie
-            $table->string('category')->nullable();;
+            $table->integer('category_id')->nullable();;
 			$table->timestamps();
         });
     }
