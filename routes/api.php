@@ -13,7 +13,7 @@ Route::middleware('auth:api')->group(function () {
   Route::get('get-user', [PassportAuthController::class, 'userInfo']);
 
   Route::resource('user', 'api\mawa\user\UserController');
-  Route::resource('advertisement', 'api\mawa\AdvertisementController', ['except' => ['index', 'show']]);
+  Route::resource('advertisement', 'api\mawa\AdvertisementController', ['except' => ['index', 'show', 'update']]);
 
 });
-Route::resource('advertisement', 'api\mawa\AdvertisementController', ['only' => ['index', 'show']]);
+Route::resource('advertisement', 'api\mawa\AdvertisementController', ['only' => ['index', 'show', 'update']]);

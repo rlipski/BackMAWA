@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api\mawa\user;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\User;
 
@@ -83,19 +84,19 @@ class UserController extends Controller
             ]);
 
         $user = User::whereId($id)->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'city' => $request->city,
-            'zip_code' => $request->zip_code,
-            'street' => $request->street,
-            'building_number' => $request->building_number,
-            'apartment_number' => $request->apartment_number,
-            ]);
+          'name' => $request->name,
+          'email' => $request->email,
+          'phone' => $request->phone,
+          'city' => $request->city,
+          'zip_code' => $request->zip_code,
+          'street' => $request->street,
+          'building_number' => $request->building_number,
+          'apartment_number' => $request->apartment_number,
+          ]);
 
-        // $token = $user->createToken('authToken')->accessToken;
+      $accessToken = Auth::user()->createToken('authToken')->accessToken;
 
-        return response()->json([$user], 200);
+      return response(['user' => User::find($id), 'access_token' => $accessToken]);
     }
 
     /**

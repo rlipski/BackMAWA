@@ -52,7 +52,7 @@ class AdvertisementController extends Controller
             'location' => $request->location,
             'price' => $request->price,
             'importance' => $request->importance,
-           
+
         ]);
 
         return response()->json(['created' => $adv], 200);
@@ -92,19 +92,19 @@ class AdvertisementController extends Controller
          $this->validate($request, [
             'name' => 'required|min:4',
             'description' => 'required|min:10',
-            'phone' => 'unique:advertisement,phone,',
+            // 'phone' => 'unique:advertisement,phone,',
             'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'location' => 'required|min:4',
-            'importance' =>'required|min:1',
+            // 'importance' =>'required|min:1',
 
-            ]); 
+            ]);
             $advertisement = Advertisement::whereId($id)->update([
                 'name' => $request->name,
                 'description' => $request->description,
-                'phone' => $request->phone,
+                // 'phone' => $request->phone,
                 'location' => $request->location,
                 'price' => $request->price,
-                'importance' => $request->importance,
+                // 'importance' => $request->importance,
                 ]);
 
                 return response()->json([$advertisement], 200);
@@ -118,8 +118,8 @@ class AdvertisementController extends Controller
      */
     public function destroy($id)
     {
-        $advertisement = Advertisement::find($id); 
-        $advertisement->delete(); //delete 
+        $advertisement = Advertisement::find($id);
+        $advertisement->delete(); //delete
         DB::table('advertisement')->where($id)->delete();
     }
 }
